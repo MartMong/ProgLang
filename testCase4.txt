@@ -1,0 +1,139 @@
+﻿Input : if(x<8){x=x+y;}else{}
+
+symbolTable:
+{'8': 'number',
+ 'else': 'reserveWord',
+ 'if': 'reserveWord',
+ 'x': 'identifier',
+ 'y': 'identifier'}
+
+
+Stack:
+[$, S, Stm]
+[$, S, Stm1]
+[$, S, IfStm]
+[$, S, Block, else, Block, ), RE, (, if]
+[$, S, Block, else, Block, ), RE, (]
+[$, S, Block, else, Block, ), RE]
+[$, S, Block, else, Block, ), RE', RE2]
+[$, S, Block, else, Block, ), RE', AR]
+[$, S, Block, else, Block, ), RE', AE]
+[$, S, Block, else, Block, ), RE', AE', T]
+[$, S, Block, else, Block, ), RE', AE', T', F]
+[$, S, Block, else, Block, ), RE', AE', T', id]
+[$, S, Block, else, Block, ), RE', AE', T', Array, Var]
+[$, S, Block, else, Block, ), RE', AE', T', Array]
+[$, S, Block, else, Block, ), RE', AE', T']
+[$, S, Block, else, Block, ), RE', AE']
+[$, S, Block, else, Block, ), RE']
+[$, S, Block, else, Block, ), RE2, REop]
+[$, S, Block, else, Block, ), RE2, <]
+[$, S, Block, else, Block, ), RE2]
+[$, S, Block, else, Block, ), AR]
+[$, S, Block, else, Block, ), AE]
+[$, S, Block, else, Block, ), AE', T]
+[$, S, Block, else, Block, ), AE', T', F]
+[$, S, Block, else, Block, ), AE', T', const]
+[$, S, Block, else, Block, ), AE', T', Int]
+[$, S, Block, else, Block, ), AE', T']
+[$, S, Block, else, Block, ), AE']
+[$, S, Block, else, Block, )]
+[$, S, Block, else, Block]
+[$, S, Block, else, }, Block2, {]
+[$, S, Block, else, }, Block2]
+[$, S, Block, else, }, Block2, Block3]
+[$, S, Block, else, }, Block2, Stm]
+[$, S, Block, else, }, Block2, ;, AE, =, id]
+[$, S, Block, else, }, Block2, ;, AE, =, Array, Var]
+[$, S, Block, else, }, Block2, ;, AE, =, Array]
+[$, S, Block, else, }, Block2, ;, AE, =]
+[$, S, Block, else, }, Block2, ;, AE]
+[$, S, Block, else, }, Block2, ;, AE', T]
+[$, S, Block, else, }, Block2, ;, AE', T', F]
+[$, S, Block, else, }, Block2, ;, AE', T', id]
+[$, S, Block, else, }, Block2, ;, AE', T', Array, Var]
+[$, S, Block, else, }, Block2, ;, AE', T', Array]
+[$, S, Block, else, }, Block2, ;, AE', T']
+[$, S, Block, else, }, Block2, ;, AE']
+[$, S, Block, else, }, Block2, ;, AE', T, +]
+[$, S, Block, else, }, Block2, ;, AE', T]
+[$, S, Block, else, }, Block2, ;, AE', T', F]
+[$, S, Block, else, }, Block2, ;, AE', T', id]
+[$, S, Block, else, }, Block2, ;, AE', T', Array, Var]
+[$, S, Block, else, }, Block2, ;, AE', T', Array]
+[$, S, Block, else, }, Block2, ;, AE', T']
+[$, S, Block, else, }, Block2, ;, AE']
+[$, S, Block, else, }, Block2, ;]
+[$, S, Block, else, }, Block2]
+[$, S, Block, else, }]
+[$, S, Block, else]
+[$, S, Block]
+[$, S, }, Block2, {]
+[$, S, }, Block2]
+[$, S, }]
+[$, S]
+
+ ┌S
+ S┤
+  └Stm┐
+      └Stm1┐
+           │     ┌if
+           │     ├(
+           │     ├)
+           │     ├else
+           │     │     ┌{
+           │     ├Block┤
+           │     │     ├}
+           │     │     └Block2
+           └IfStm┤
+                 │     ┌{
+                 │     ├}
+                 ├Block┤
+                 │     │      ┌Block2
+                 │     └Block2┤
+                 │            └Block3┐
+                 │                   │   ┌=
+                 │                   │   ├;
+                 │                   │   │  ┌Var
+                 │                   │   ├id┤
+                 │                   │   │  └Array
+                 │                   └Stm┤
+                 │                       │    ┌T'
+                 │                       │  ┌T┤
+                 │                       │  │ └F┐
+                 │                       │  │   │  ┌Var
+                 │                       │  │   └id┤
+                 │                       │  │      └Array
+                 │                       └AE┤
+                 │                          │   ┌+
+                 │                          │   ├AE'
+                 │                          └AE'┤
+                 │                              │ ┌T'
+                 │                              └T┤
+                 │                                └F┐
+                 │                                  │  ┌Var
+                 │                                  └id┤
+                 │                                     └Array
+                 │  ┌RE2┐
+                 │  │   └AR┐
+                 │  │      │  ┌AE'
+                 │  │      └AE┤
+                 │  │         │ ┌T'
+                 │  │         └T┤
+                 │  │           └F┐
+                 │  │             │  ┌Var
+                 │  │             └id┤
+                 │  │                └Array
+                 └RE┤
+                    │   ┌REop┐
+                    │   │    └<
+                    └RE'┤
+                        └RE2┐
+                            └AR┐
+                               │  ┌AE'
+                               └AE┤
+                                  │ ┌T'
+                                  └T┤
+                                    └F┐
+                                      └const┐
+                                            └Int
